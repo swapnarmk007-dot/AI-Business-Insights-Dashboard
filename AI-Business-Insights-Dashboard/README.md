@@ -260,16 +260,11 @@ Prediction
 
 ---
 
-# 🌐 Deployment
+# 🌐 Deploymen
 
-This application is deployed on **Railway**.
+This application is deployed on **Google Cloud Run**.
 
-Live Application:
-
-https://web-production-1aa4b.up.railway.app/
-
-<img width="1919" height="700" alt="AI BI" src="https://github.com/user-attachments/assets/14aad104-5c31-4316-8893-525e47215201" />
-
+Live Application: https://ais-pre-xbgnhf7djifqxgdhy2c2e7-643499324128.asia-east1.run.app/
 
 
 ---
