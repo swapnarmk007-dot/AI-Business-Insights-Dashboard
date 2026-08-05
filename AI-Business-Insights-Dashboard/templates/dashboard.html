@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container mt-4">
+
+    <!-- KPI Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h5>Rows</h5>
+                    <h3>{{ rows_count }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h5>Columns</h5>
+                    <h3>{{ columns_count }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h5>Missing Values</h5>
+                    <h3>{{ missing_values }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h5>Duplicates</h5>
+                    <h3>{{ duplicate_rows }}</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            {% if category_chart %}
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4>Sales by Category</h4>
+                    {{ category_chart|safe }}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-6">
+
+            {% if trend_chart %}
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4>Sales Trend</h4>
+                    {{ trend_chart|safe }}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            {% if region_chart %}
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4>Region-wise Sales</h4>
+                    {{ region_chart|safe }}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-6">
+
+            {% if product_chart %}
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4>Top 10 Products</h4>
+                    {{ product_chart|safe }}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            {% if segment_chart %}
+
+            <div class="card shadow mb-4">
+
+                <div class="card-body">
+
+                    <h4>Sales by Segment</h4>
+
+                    {{ segment_chart|safe }}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-6">
+
+            {% if profit_chart %}
+
+            <div class="card shadow mb-4">
+
+                <div class="card-body">
+
+                    <h4>Profit by Category</h4>
+
+                    {{ profit_chart|safe }}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+    <div class="row">
+
+    <div class="col-md-12">
+
+        {% if customer_chart %}
+
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+
+                <h4>Top 10 Customers</h4>
+
+                {{ customer_chart|safe }}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+    <!-- AI Insights -->
+
+    {% if insights %}
+
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+
+            <h3>🤖 AI Business Insights</h3>
+
+            <ul class="list-group">
+
+                {% for item in insights %}
+
+                <li class="list-group-item">
+
+                    {{ item }}
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- Dataset -->
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h4>Dataset Preview</h4>
+
+            <div class="table-responsive">
+
+                {{ table|safe }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+        📈 Sales Forecasting
+    </h2>
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h4>
+
+                Forecast Future Values
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/run_forecast" method="POST">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Select Date Column
+
+                    </label>
+
+                    <select class="form-select" name="date_column">
+
+                        {% for col in columns %}
+
+                        <option value="{{ col }}">
+
+                            {{ col }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Select Target Column
+
+                    </label>
+
+                    <select class="form-select" name="target_column">
+
+                        {% for col in columns %}
+
+                        <option value="{{ col }}">
+
+                            {{ col }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Forecast Period
+
+                    </label>
+
+                    <select class="form-select" name="period">
+
+                        <option value="30">30 Days</option>
+
+                        <option value="60">60 Days</option>
+
+                        <option value="90">90 Days</option>
+
+                        <option value="180">180 Days</option>
+
+                        <option value="365">365 Days</option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn btn-success">
+
+                    Generate Forecast
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    {% if forecast_chart %}
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h4>
+
+                Forecast Result
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {{ forecast_chart|safe }}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    {% if forecast_table %}
+
+    <br>
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+
+            <h4>
+
+                Forecast Data
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {{ forecast_table|safe }}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

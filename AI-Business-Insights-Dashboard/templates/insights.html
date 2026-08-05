@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+        🤖 AI Dataset Insights
+    </h2>
+
+    <!-- KPI Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Total Rows</h6>
+
+                    <h3>{{ rows_count }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Total Columns</h6>
+
+                    <h3>{{ columns_count }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Missing Values</h6>
+
+                    <h3>{{ missing_values }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Duplicate Rows</h6>
+
+                    <h3>{{ duplicate_rows }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- AI Insights -->
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h4>
+
+                AI Generated Insights
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if insights %}
+
+                <ul class="list-group">
+
+                    {% for item in insights %}
+
+                    <li class="list-group-item">
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <div class="alert alert-warning">
+
+                    No insights available.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- AI Recommendations -->
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h4>
+
+                AI Recommendations
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <ul>
+
+                {% if missing_values > 0 %}
+                <li>
+                    Fill missing values before training ML models.
+                </li>
+                {% endif %}
+
+                {% if duplicate_rows > 0 %}
+                <li>
+                    Remove duplicate records to improve data quality.
+                </li>
+                {% endif %}
+
+                <li>
+                    Perform feature engineering before model training.
+                </li>
+
+                <li>
+                    Compare multiple ML algorithms instead of relying on one model.
+                </li>
+
+                <li>
+                    Analyze feature importance to understand key business drivers.
+                </li>
+
+                <li>
+                    Monitor model performance before deployment.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

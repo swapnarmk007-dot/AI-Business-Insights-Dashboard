@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+Prediction Studio
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h3>🔮 Prediction Studio</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Upload New Dataset
+
+                    </label>
+
+                    <input
+                        type="file"
+                        class="form-control"
+                        name="file"
+                        required>
+
+                </div>
+
+                <button class="btn btn-success">
+
+                    Predict
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    {% if table %}
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            Prediction Results
+
+        </div>
+
+        <div class="card-body">
+
+            {{ table|safe }}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    {% if table %}
+
+<br>
+
+<a href="/download_predictions"
+   class="btn btn-success">
+
+    ⬇ Download Predictions
+
+</a>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

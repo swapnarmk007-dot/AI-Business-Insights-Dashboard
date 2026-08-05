@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block title %}
+Machine Learning
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-center">
+        🤖 Machine Learning Studio
+    </h2>
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+            Train Machine Learning Model
+        </div>
+
+        <div class="card-body">
+
+            <form action="/train_model" method="POST">
+
+                <!-- Target Column -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Target Column
+                    </label>
+
+                    <select class="form-select" name="target" required>
+
+                        {% for col in columns %}
+
+                        <option value="{{ col }}">
+                            {{ col }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <!-- Problem Type -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Problem Type
+                    </label>
+
+                    <select class="form-select" name="problem">
+
+                        <option value="Regression">
+                            Regression
+                        </option>
+
+                        <option value="Classification">
+                            Classification
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button type="submit" class="btn btn-success">
+
+                    🚀 Train Model
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    {% if results %}
+
+<br>
+
+<div class="card shadow">
+
+    <div class="card-header bg-success text-white">
+
+        <h4>🏆 AutoML Results</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Model</th>
+                    <th>R² Score</th>
+                    <th>MAE</th>
+                    <th>RMSE</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in results %}
+
+                <tr>
+
+                    <td>{{ row.name }}</td>
+
+                    <td>{{ row.r2 }}</td>
+
+                    <td>{{ row.mae }}</td>
+
+                    <td>{{ row.rmse }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <div class="alert alert-success">
+
+            <h4>
+
+                🥇 Best Model :
+                {{ best_model }}
+
+            </h4>
+
+            <h5>
+
+                R² Score :
+                {{ best_score }}
+
+            </h5>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<br>
+
+<a href="/generate_report" class="btn btn-danger">
+    📄 Download AI Report
+</a>
+
+{% if class_results %}
+
+<br>
+
+<div class="card shadow">
+
+    <div class="card-header bg-warning">
+
+        <h4>🏆 Classification AutoML</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered">
+
+            <thead>
+
+                <tr>
+
+                    <th>Model</th>
+
+                    <th>Accuracy</th>
+
+                    <th>Precision</th>
+
+                    <th>Recall</th>
+
+                    <th>F1 Score</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in class_results %}
+
+                <tr>
+
+                    <td>{{ row.name }}</td>
+
+                    <td>{{ row.accuracy }}</td>
+
+                    <td>{{ row.precision }}</td>
+
+                    <td>{{ row.recall }}</td>
+
+                    <td>{{ row.f1 }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <div class="alert alert-success">
+
+            <h4>
+
+                🥇 Best Classifier:
+                {{ best_classifier }}
+
+            </h4>
+
+            <h5>
+
+                Accuracy:
+                {{ best_accuracy }}
+
+            </h5>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% if importance_chart %}
+
+<br>
+
+<div class="card shadow">
+
+    <div class="card-header bg-info text-white">
+
+        <h4>📊 Feature Importance</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        {{ importance_chart|safe }}
+
+    </div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

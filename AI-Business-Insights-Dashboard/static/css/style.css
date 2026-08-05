@@ -1,0 +1,26 @@
+body {
+    background-color: #eef2f7;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.table {
+    font-size: 14px;
+}
+
+.btn-primary {
+    border-radius: 8px;
+}
+
+.form-control {
+    border-radius: 8px;
+}

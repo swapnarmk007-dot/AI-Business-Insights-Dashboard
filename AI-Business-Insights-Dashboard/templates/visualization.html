@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+Visualization
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">📊 Visualization Studio</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form action="/generate_chart" method="POST">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<label>X-Axis</label>
+
+<select class="form-select" name="x">
+
+{% for col in columns %}
+
+<option value="{{ col }}">{{ col }}</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label>Y-Axis</label>
+
+<select class="form-select" name="y">
+
+{% for col in columns %}
+
+<option value="{{ col }}">{{ col }}</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label>Chart Type</label>
+
+<select class="form-select" name="chart">
+
+<option>Bar</option>
+<option>Line</option>
+<option>Scatter</option>
+<option>Pie</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="btn btn-primary">
+
+Generate Chart
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+{% if chart %}
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+{{ chart|safe }}
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

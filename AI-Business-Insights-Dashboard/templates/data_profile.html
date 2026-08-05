@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}
+Data Profile
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+📋 Dataset Profile
+</h2>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Rows</h5>
+                <h2>{{ rows }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Columns</h5>
+                <h2>{{ columns }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Missing Values</h5>
+                <h2>{{ missing }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h5>Memory</h5>
+                <h2>{{ memory }} MB</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+Column Information
+
+</div>
+
+<div class="card-body">
+
+<div class="table-responsive">
+
+{{ table|safe }}
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header bg-success text-white">
+
+Summary Statistics
+
+</div>
+
+<div class="card-body">
+
+<div class="table-responsive">
+
+{{ stats|safe }}
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

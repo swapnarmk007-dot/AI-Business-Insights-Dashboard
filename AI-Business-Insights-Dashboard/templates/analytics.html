@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="container-fluid mt-4">
+
+
+    <h2 class="section-title text-center">
+
+        📊 Analytics Dashboard
+
+    </h2>
+
+
+
+    <!-- First Row -->
+
+    <div class="row">
+
+
+        <div class="col-md-6">
+
+
+            {% if category_chart %}
+
+
+            <div class="card shadow mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h4 class="fw-bold text-success">
+
+                        📦 Sales by Category
+
+                    </h4>
+
+
+                    {{ category_chart|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+
+
+
+        <div class="col-md-6">
+
+
+            {% if trend_chart %}
+
+
+            <div class="card shadow mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h4 class="fw-bold text-success">
+
+                        📈 Sales Trend
+
+                    </h4>
+
+
+                    {{ trend_chart|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- Second Row -->
+
+
+    <div class="row">
+
+
+
+        <div class="col-md-6">
+
+
+            {% if region_chart %}
+
+
+            <div class="card shadow mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h4 class="fw-bold text-success">
+
+                        🌍 Region-wise Sales
+
+                    </h4>
+
+
+                    {{ region_chart|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+
+
+
+        <div class="col-md-6">
+
+
+            {% if profit_chart %}
+
+
+            <div class="card shadow mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h4 class="fw-bold text-success">
+
+                        💰 Profit by Category
+
+                    </h4>
+
+
+                    {{ profit_chart|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Third Row -->
+
+
+    <div class="row">
+
+
+
+        <div class="col-md-6">
+
+
+            {% if segment_chart %}
+
+
+            <div class="card shadow mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h4 class="fw-bold text-success">
+
+                        👥 Sales by Segment
+
+                    </h4>
+
+
+                    {{ segment_chart|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+
+
+
+        <div class="col-md-6">
+
+
+            {% if customer_chart %}
+
+
+            <div class="card shadow mb-4">
+
+
+                <div class="card-body">
+
+
+                    <h4 class="fw-bold text-success">
+
+                        ⭐ Top 10 Customers
+
+                    </h4>
+
+
+                    {{ customer_chart|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+
+
+            {% if heatmap %}
+
+
+            <div class="card shadow mt-4">
+
+
+
+                <div class="card-header text-white"
+                     style="background:#1f2937;">
+
+
+                    <h4>
+
+                        🔥 Correlation Heatmap
+
+                    </h4>
+
+
+                </div>
+
+
+
+
+
+                <div class="card-body">
+
+
+                    {{ heatmap|safe }}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock %}

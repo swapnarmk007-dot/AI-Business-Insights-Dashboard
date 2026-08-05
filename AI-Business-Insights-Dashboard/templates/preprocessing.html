@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">
+        🧹 Data Preprocessing
+    </h2>
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h5>Rows</h5>
+
+                    <h2>{{ rows_count }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h5>Columns</h5>
+
+                    <h2>{{ columns_count }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h5>Missing</h5>
+
+                    <h2>{{ missing_values }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow text-center">
+
+                <div class="card-body">
+
+                    <h5>Duplicates</h5>
+
+                    <h2>{{ duplicate_rows }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h4>Cleaning Operations</h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/clean_data" method="POST">
+
+                <div class="form-check">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="remove_duplicates">
+
+                    <label class="form-check-label">
+
+                        Remove Duplicate Rows
+
+                    </label>
+
+                </div>
+
+                <br>
+
+                <div class="form-check">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="fill_missing">
+
+                    <label class="form-check-label">
+
+                        Fill Missing Values
+
+                    </label>
+
+                </div>
+
+                <br>
+
+                <div class="form-check">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="encode_categorical">
+
+                    <label class="form-check-label">
+
+                        Encode Categorical Columns
+
+                    </label>
+
+                </div>
+
+                <br>
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+
+                    Apply Cleaning
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h4>Rename Column</h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form action="/rename_column" method="POST">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Select Column
+
+                    </label>
+
+                    <select
+                        class="form-select"
+                        name="old_name">
+
+                        {% for col in columns %}
+
+                        <option value="{{ col }}">
+
+                            {{ col }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        New Column Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="new_name"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-warning">
+
+                    Rename Column
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <a
+        href="/download_cleaned"
+        class="btn btn-primary mb-3">
+
+        Download Cleaned Dataset
+
+    </a>
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h4>Dataset Preview</h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                {{ table|safe }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
